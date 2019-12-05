@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<properties resource="kr/or/ddit/ibatis/config/SqlMapConfig.properties" />
+	<settings cacheModelsEnabled="true" 
+			  enhancementEnabled="true"
+			  lazyLoadingEnabled="true"
+			  maxRequests="32" 
+			  maxSessions="10"
+			  maxTransactions="5" 
+			  useStatementNamespaces="true" />
+			  
+	 <!--
+	 
+	 	DBCP(DataBase Connection Pooling) :  DB 대상의 컨넥션을 일정갯수 미리 생성 후 운용.
+	 	
+	 	1. 환경 
+	 		http://commons.apache.org
+	 	
+	 	2. WEB-INF/lib import 
+	 	
+	 	JNDI(Java Naming Directory Invokation) : 컨넥션 풀에 적용하면 네이밍 규칙에따라 컨넥션을 요청처에 제공(DBCP제공)
+	 	
+	   -->
+
+	
+	<transactionManager type="JDBC">
+<!--  	<dataSource type="SIMPLE">
+		<property name="JDBC.Driver" value="${driver}" />
+		<property name="JDBC.ConnectionURL" value="${url}" />
+		<property name="JDBC.Username" value="${username}" />
+		<property name="JDBC.Password" value="${password}" />
+	</dataSource> -->
+	
+	 
+	 <!-- <dataSource type="DBCP">
+	 	<property name="driverClassName" value="${driver}"/>
+	    <property name="url" value="${url}"/>
+	    <property name="username" value="${username}"/>
+	    <property name="password" value="${password}"/>
+	    <property name="maxActive" value="10"/>
+	    <property name="maxWait" value="-1"/>
+	    <property name="maxIdle" value="6"/>
+	    <property name="removeAbandoned" value="true"/>
+	    <property name="removeAbandonedTimeout" value="60"/>
+	    
+	    
+	 </dataSource> -->
+	 
+	 
+	 
+	 <dataSource type="JNDI">
+	 
+	 	<property name="DBJndiContext" value="java:comp/env/jdbc/ddit"/>
+	 	
+	 </dataSource>
+	 
+	</transactionManager>
+	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/member.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/freeboard.xml"/>
+	
+</sqlMapConfig>
+
+
+
+
+
+

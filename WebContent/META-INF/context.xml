@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+	<WatchedResource>WEB-INF/web.xml</WatchedResource>
+	<Resource name="jdbc/ddit"
+			auth = "hanseon"
+			type = "javax.sql.DataSource"
+			driverClassName = "oracle.jdbc.driver.OracleDriver"
+			 url="jdbc:oracle:thin:@118.217.27.82:1521:XE"
+			username="pc25"
+			password="java"
+			maxActive="10"
+			maxIdle="6"
+			maxWait="-1"
+			removeAbandoned="true"
+			removeAbandonedTimeout="100"
+			factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"
+			
+			
+			></Resource>
+</Context>

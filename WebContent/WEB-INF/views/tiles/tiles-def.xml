@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+	<!-- 
+		
+		definition : 레이아웃 구성단위
+					 name - TilesDispatch 가 TilesServlet에 전달한 문자열과 맵핑되는 기준(definition선택 기준)
+					 template- difinition 내 선언된 개별 attribute 에 name 속성값을 기초로 레이아웃을 구성하는 jsp
+					 * 상속가능
+		
+	 -->
+
+
+	<definition name="userMain" template="/WEB-INF/views/user/mainTemplate.jsp">
+		<put-attribute name="title" value="엄마!!미안해!!"></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/views/user/layout/header.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/user/layout/left.jsp"></put-attribute>
+		<put-attribute name="content_header" value="/WEB-INF/views/user/content_header.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/user/layout/footer.jsp"></put-attribute>
+	</definition>
+	
+	
+	
+	<definition name="user/*/*" extends="userMain"  >
+		 <put-attribute name="content" value="/WEB-INF/views/user/{1}/{2}.jsp"></put-attribute>
+	</definition>
+	
+	
+	<definition name="adminMain" template="/WEB-INF/views/user/mainTemplate.jsp">
+		<put-attribute name="title" value="엄마!!미안해!!"></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/views/user/layout/header.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/user/layout/left.jsp"></put-attribute>
+		<put-attribute name="content_header" value="/WEB-INF/views/user/content_header.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/user/layout/footer.jsp"></put-attribute>
+	</definition>
+	
+	<!--template 속성, title, header, left, content_header, footer 전체 attribute를 상속받음  -->
+	
+	<!--
+		user/freeboard/freeboardView
+		user/freeboard/freeboardForm		
+		user/freeboard/freeboardList
+		user/freeboard/freeboardReplyForm
+		user/member/memberForm
+		user/member/memberView
+		user/member/memberList				
+	  -->
+	
+	<!--
+		user/freeboard/freeboardView
+		user/freeboard/freeboardForm		
+		user/freeboard/freeboardList
+		user/freeboard/freeboardReplyForm
+		user/admin/memberForm
+		user/admin/memberView
+		user/admin/memberList				
+	  -->
+	
+	
+	<definition name="admin/*/*" extends="adminMain"  >
+		 <put-attribute name="content" value="/WEB-INF/views/user/{1}/{2}.jsp"></put-attribute>
+	</definition>
+	
+	
+	
+</tiles-definitions>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+ <!--  스트럿츠 설정파일 
+ 			* 한개 이상의 패키지가 반드시 존재하고, 해당 패키지 내에는 한개 이상의 액션이 반드시 선언되어야 함.
+ 			
+ 		package : 클라이언트의 요청을 처리하는 액션이 선언. 
+ 				   주요 관점을 기준으로 피키지를 선언
+ 					  * 패키지는 상속가능(abstract=true 설정된 패키지만 상속 가능)
+ 					 	피상속 패키지는 extends를 활용해서 상속처리
+ 			   name - 다수 선언될 수 있는 패키지를 구분하는 구분자.
+ 			   extends - default(struts-default선언)
+ 			   			 그 외 상속되어야 할 패키지 존재시, 해당 패키지 name 속성값 선언.
+ 			 	 
+ 		actoin  :  패키지 내 선언으로 클라이언트의 요청을 처리하는 커맨들 컨트롤러 역할
+				name  - 다수 선언될 수 있는 액션를 구분하는 구분자. 					  
+				class - 클라이언트의 요청을 실제 처리할 커맨드 컨트롤러(액션클래스)선언 
+						(생략가능 : 비지니스 로직이 존재하지 않을때..)
+				result : 액션 클래스의 액션 메서드의 반환값에 따라 View 를 결정
+						 View 결정
+						 리다이렉트 처리 (do 확장자, 스트럿츠 설정파일 내 다른 패키지의 다른 액션 대상)
+						 포워딩 처리 (defualt jsp, tiles, do확장자, )
+						 
+						 name - 액션 메서드의 반환값과 맵핑 처리 기준 default success : 생략가능		 
+						 type - default dispatcher 생략 가능 : jsp 포워딩 처리
+						 		<result name="success" type="dispatcher"></result>
+						 		redirectAction : 액션에서 다른 또는 동일 패키지 내 다른 액션으 리다이렉트  처리(클라이언트) . 에러아닌 에러가 발생될 수 있음.
+						 		redirect : jsp, 액션에 다른 또 동일 패키지 내 다른 액션으로 리다이렉트 처리
+						 		chain : 액션에서 다른 또는 동일 패키지 내 다른 액션으로 포워딩 처리 
+						 		stream : 액션에서 클라이언트대상 다운로드 
+						 		tiles : 액션에서 타일즈 설정파일의 특정 definition의 name 속성에 접근
+						 				* extends ="tiles-default" 반드시 선언.
+						 				
+ -->
+ 	<!--
+ 		http://localhost/Struts2Toddler/hello/helloAction.do
+ 			/hello : 패키지의 namespace 속성값
+ 			
+ 			
+ 			helloAction : 해당 namespace 내 선언된 액션의 name 속성값
+ 	
+ 	  -->
+	<package name="helloPKG" extends="struts-default" namespace="/hello">
+	 	<action name="helloAction" class="kr.or.ddit.hello.controller.HelloAction">
+	 		<result >/WEB-INF/views/user/hello/hello.jsp</result>
+	 	</action>
+	</package>
+
+	<!-- 외부에 존재하는 스트럿츠 설정파일 레퍼런스 -->
+	<include file="kr/or/ddit/struts/config/common.xml"></include>
+	<include file="kr/or/ddit/struts/config/join.xml"></include>
+	<include file="kr/or/ddit/struts/config/member.xml"></include>	
+	<include file="kr/or/ddit/struts/config/file.xml"></include>
+	<include file="kr/or/ddit/struts/config/freeboard.xml"></include>	
+
+  
+</struts>

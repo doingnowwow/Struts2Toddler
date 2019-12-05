@@ -1,0 +1,51 @@
+﻿logback 로깅 라이브러리
+1. log4j 아키텍처 기반으로 성능 개선, 메모리 최적화를 도모하기위해 활용
+   (log4j 보다 평균 로깅 속도가 10배가 빠름)
+   설정파일이 수정되면 Auto Reloading 가능
+   log4j는 동일한 로깅 메세지라도 메모리에 누적 관리.
+   (동일 로깅 메세지의 경우에는 재활용.)
+   동적인 어플리케이션 빌드 환경 제공
+2. logback 주요 컴포넌트
+   2.1 logback-core - 핵심 컴포넌트
+   2.2 logback-classic - slf4j하고 연동 컴포넌트
+   2.3 logback-access - Http Request Debugging 컴포넌트
+   2.4 로그레벨 : trace, debug, info, warn, error
+      
+3. 설정
+   3.1 Spring 프레임웍은 commons-logging 라이브러리를 활용해서 로깅을 처리
+       commons-logging과의 의존성 배제시킴.
+   3.2 log4j 라이브러리 삭제.(log4j dependency 삭제)
+   3.3 라이브러리 추가
+       slf4j-api-?.?.jar
+       logback-classic-?.?.jar
+       jcl-over-slf4j-?.?.jar
+   3.4 logback의 설정파일은 클래스패스 루트 하위에 logback.xml로 존재
+   3.5 logback.xml 파일의 위치와 이름을 변경하기위해 라이브러리 추가 및 설정
+       logback-ext-spring-0.1.4.jar 추가
+       
+       web.xml
+          	<context-param>
+				<param-name>logbackConfigLocation</param-name>
+				<param-value>classpath:kr/or/ddit/logback/config/logback.xml</param-value>
+			</context-param>
+			<listener>
+				<listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+			</listener>        
+          
+   3.6 로깅 메세지 중복 출력 방지
+       <logger name="" additivity="false"       
+             
+ 4. 활용
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
+    
+    Logger logger = LoggerFactory.getLogger(Tutorial.class);
+    logger.debug("디버그 레벨 찍음.");            
+             
+             
+             
+             
+             
+             
+             
+             

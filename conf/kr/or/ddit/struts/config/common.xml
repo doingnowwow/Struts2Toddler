@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- 다른 패키지에 상속되는 패키지 : abstract =true namespace 선언 X 액션 선언 X -->
+	<package name="commonPKG" extends="struts-default" abstract="true">
+
+		<interceptors>
+			<interceptor name="cryptoInterceptor" class="kr.or.ddit.utiles.CryptoInterceptor"></interceptor>
+
+
+		</interceptors>
+
+
+	</package>
+
+
+
+</struts>

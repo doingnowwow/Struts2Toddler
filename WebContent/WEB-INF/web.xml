@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>Struts2Toddler</display-name>
+	<welcome-file-list>
+		<welcome-file>/WEB-INF/views/welcome.jsp</welcome-file>
+		
+	</welcome-file-list>
+
+	<!-- 스트럿츠2 설정 : Tomcat WAS(Web Application Server), Servlet Contatiner, 
+		Web Container Struts2 프레임웍 활용 스트럿츠 프레임웤의 기본 인지 확장자 : *.action FilterDispatcher 
+		: 클라이언트의 요청(URL)을 스트럿츠 처리 여부를 결정 해당 요청이 스트럿츠 프레임웍 처리시 스트럿츠 설정파일(xml) 로딩(Object) 
+		* 스트럿츠 설정파일 : 빌드패스 루트 하위(struts.xml). -->
+
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+		
+	</filter-mapping>
+	
+
+
+	<listener>
+		<listener-class>kr.or.ddit.listener.LogbackInitializeListener</listener-class>
+	</listener>
+	
+	<context-param>
+		<param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
+		<param-value>/WEB-INF/views/tiles/tiles-def.xml</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+	</listener>
+
+
+
+</web-app>
